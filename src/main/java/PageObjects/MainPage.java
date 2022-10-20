@@ -38,97 +38,93 @@ public class MainPage {
         WebElement element = driver.findElement(questionAboutMain);
         ((JavascriptExecutor) driver).executeScript("arguments[0].scrollIntoView();", element);
     }
-    public void clickQuestionAboutCost() {
 
+    public void clickQuestionAboutCost() {
         driver.findElement(question_1).click();
     }
-    public void waitForCost(String expected){
-        new WebDriverWait(driver, Duration.ofSeconds(3)).until(ExpectedConditions.textToBePresentInElementLocated(answer_1, expected));
+    public String getTextAnswerToQuestionAboutCost() {
+        return driver.findElement(answer_1).getText();
     }
-    public void cost(String expected) {
-        scrollQuestionAboutMain();
-        clickQuestionAboutCost();
-        waitForCost(expected);
+        public void checkTextAnswerAboutCost() {
+           scrollQuestionAboutMain();
+           clickQuestionAboutCost();
     }
+
     public void clickQuestionAboutQuantity() {
         driver.findElement(question_2).click();
-    }   public void waitForQuantity(String expected){
-        new WebDriverWait(driver, Duration.ofSeconds(3)).until(ExpectedConditions.textToBePresentInElementLocated(answer_2, expected));
     }
-    public void quantity(String expected) {
-        scrollQuestionAboutMain();
-        clickQuestionAboutQuantity();
-        waitForQuantity(expected);
+    public String getTextAnswerToQuestionAboutQuantity() {
+        return driver.findElement(answer_2).getText();
+        }
+        public void checkTextAnswerAboutQuantity() {
+            scrollQuestionAboutMain();
+            clickQuestionAboutQuantity();
     }
+
     public void clickQuestionAboutTimeRent() {
         driver.findElement(question_3).click();
     }
-    public void waitForTimeRent(String expected) {
-        new WebDriverWait(driver, Duration.ofSeconds(3)).until(ExpectedConditions.textToBePresentInElementLocated(answer_3, expected));
+    public String getTextAnswerToQuestionAboutTimeRent() {
+        return driver.findElement(answer_3).getText();
     }
-    public void timeRent(String expected) {
+    public void checkTextAnswerAboutTimeRent() {
         scrollQuestionAboutMain();
         clickQuestionAboutTimeRent();
-        waitForTimeRent(expected);
     }
+
     public void clickQuestionAboutRentToday() {
         driver.findElement(question_4).click();
     }
-    public void waitForRentToday(String expected) {
-        new WebDriverWait(driver, Duration.ofSeconds(3)).until(ExpectedConditions.textToBePresentInElementLocated(answer_4, expected));
+    public String getTextAnswerToQuestionAboutRentToday() {
+        return driver.findElement(answer_4).getText();
     }
-    public void rentToday(String expected) {
+    public void checkTextAnswerAboutRentToday() {
         scrollQuestionAboutMain();
         clickQuestionAboutRentToday();
-        waitForRentToday(expected);
     }
 
     public void clickQuestionAboutExtendRentOrReturn() {
         driver.findElement(question_5).click();
     }
-    public void waitForExtendRent(String expected) {
-        new WebDriverWait(driver, Duration.ofSeconds(3)).until(ExpectedConditions.textToBePresentInElementLocated(answer_5, expected));
+    public String getTextAnswerToQuestionAboutExtendRentOrReturn() {
+        return driver.findElement(answer_5).getText();
     }
-    public void extendRent(String expected) {
+    public void checkTextAnswerAboutExtendRentOrReturn() {
         scrollQuestionAboutMain();
         clickQuestionAboutExtendRentOrReturn();
-        waitForExtendRent(expected);
     }
 
     public void clickQuestionAboutBatteryScooter() {
         driver.findElement(question_6).click();
     }
-    public void waitForBatteryScooter(String expected) {
-        new WebDriverWait(driver, Duration.ofSeconds(3)).until(ExpectedConditions.textToBePresentInElementLocated(answer_6, expected));
+    public String getTextAnswerToQuestionAboutBatteryScooter() {
+        return driver.findElement(answer_6).getText();
     }
-    public void batteryScooter(String expected) {
+    public void checkTextAnswerAboutBatteryScooter() {
         scrollQuestionAboutMain();
         clickQuestionAboutBatteryScooter();
-        waitForBatteryScooter(expected);
     }
 
     public void clickQuestionAboutOrderCancel() {
         driver.findElement(question_7).click();
     }
-    public void waitForOrderCancel(String expected) {
-        new WebDriverWait(driver, Duration.ofSeconds(3)).until(ExpectedConditions.textToBePresentInElementLocated(answer_7, expected));
+    public String getTextAnswerToQuestionAboutOrderCancel() {
+        return driver.findElement(answer_7).getText();
     }
-    public void orderCancel(String expected) {
+    public void checkTextAnswerAboutOrderCancel() {
         scrollQuestionAboutMain();
         clickQuestionAboutOrderCancel();
-        waitForOrderCancel(expected);
     }
 
     public void clickQuestionAboutLocation() {
         driver.findElement(question_8).click();
     }
-    public void waitForLocation(String expected) {
-        new WebDriverWait(driver, Duration.ofSeconds(3)).until(ExpectedConditions.textToBePresentInElementLocated(answer_8, expected));
+    public String getTextAnswerToQuestionAboutLocation() {
+        return driver.findElement(answer_8).getText();
     }
-    public void location(String expected) {
+    public void checkTextAnswerAboutLocation() {
         scrollQuestionAboutMain();
         clickQuestionAboutLocation();
-        waitForLocation(expected);
     }
 
     public void clickOrderFirstButton() {
@@ -141,16 +137,14 @@ public class MainPage {
         clickOrderFirstButton();
         waitForFirstButton();
     }
+
     public void clickOrderSecondButton() {
         driver.findElement(orderSecondButton).click();
-    }
-    public void waitForSecondButton() {
-        new WebDriverWait(driver, Duration.ofSeconds(10)).until(ExpectedConditions.elementToBeClickable(orderSecondButton));
     }
     public void secondButton() {
         scrollQuestionAboutMain();
         clickOrderSecondButton();
-        waitForSecondButton();
+
     }
 }
 

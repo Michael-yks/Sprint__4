@@ -12,87 +12,91 @@ public class AboutRentPage {
     private WebDriver driver;
     private final By dateRentField = By.xpath(".//*[@placeholder='* Когда привезти самокат']");
     private final By rentPeriodField = By.className("Dropdown-placeholder");
-    private final By rentOneDay = By.xpath(     "//*[@id=\"root\"]/div/div[2]/div[2]/div[2]/div[2]/div[1]");
-    private final By rentTwoDay = By.xpath ( "//*[@id=\"root\"]/div/div[2]/div[2]/div[2]/div[2]/div[2]");
-    private final By rentThreeDay = By.xpath ( "//*[@id=\"root\"]/div/div[2]/div[2]/div[2]/div[2]/div[3]");
-    private final By rentFourDay = By.xpath(  "//*[@id=\"root\"]/div/div[2]/div[2]/div[2]/div[2]/div[4]");
-    private final By rentFiveDay = By.xpath(  "//*[@id=\"root\"]/div/div[2]/div[2]/div[2]/div[2]/div[5]");
-    private final By rentSixDay = By.xpath(  "//*[@id=\"root\"]/div/div[2]/div[2]/div[2]/div[2]/div[6]");
-    private final By rentSevenDay = By.xpath(  "//*[@id=\"root\"]/div/div[2]/div[2]/div[2]/div[2]/div[7]");
+    private final By rentOneDay = By.xpath(".//*[text() = 'сутки']");
+    private final By rentTwoDay = By.xpath ( ".//*[text() = 'двое суток']");
+    private final By rentThreeDay = By.xpath ( ".//*[text() = 'трое суток']");
+    private final By rentFourDay = By.xpath(  ".//*[text() = 'четверо суток']");
+    private final By rentFiveDay = By.xpath(  ".//*[text() = 'пятеро суток']");
+    private final By rentSixDay = By.xpath(  ".//*[text() = 'шестеро суток']");
+    private final By rentSevenDay = By.xpath(  ".//*[text() = 'семеро суток']");
     private final By colorScooterBlack = By.xpath(".//*[@class='Checkbox_Label__3wxSf' and @for='black']");
     private final By colorScooterGrey = By.xpath(".//*[@class='Checkbox_Label__3wxSf' and @for='grey']");
 
-    private final By commentForCourierField = By.className("Input_InputContainer__3NykH");
-    private final By buttonOrder = By.xpath("//*[@id='root']/div/div[2]/div[3]/button[2]");
-    private final By buttonYes = By.xpath("//*[@id='root']/div/div[2]/div[5]/div[2]/button[2]");
-    private final By orderProcessed = By.className("Order_ModalHeader__3FDaJ");
+    private final By commentForCourierField = By.xpath(".//*[@placeholder = 'Комментарий для курьера']");
+
+    private final By buttonOrder = By.xpath(".//div[@class='Order_Content__bmtHS']//button[text()='Заказать']");
+    private final By buttonYes = By.xpath(".//button[(text() = 'Да')]");
+    private final By windowOrderCreated = By.className("Order_Modal__YZ-d3");
+    //private final By buttonOrderStatus = By.xpath(".//*[text() = 'Посмотреть статус']");
+    //private final By windowOrderStatus = By.className("Track_OrderInfo__2fpDL");
+
+
 
     public AboutRentPage(WebDriver driver) {
         this.driver = driver;
     }
-    public void setDateRentField(String dateRent) {
+    public void fillDateRentField(String dateRent) {
         driver.findElement(dateRentField).click();
         driver.findElement(dateRentField).sendKeys(dateRent);
         driver.findElement(dateRentField).sendKeys(Keys.ENTER);
     }
-    public void setRentPeriodField(String day) {
+    public void selectRentPeriodField(String day) {
         driver.findElement(rentPeriodField).click();
-        if (day == "one") {
-            driver.findElement(rentOneDay).click();
-        }
-        if (day == "two") {
-            driver.findElement(rentTwoDay).click();
-        }
-        if (day == "three") {
-            driver.findElement(rentThreeDay).click();
-        }
-        if (day == "four") {
-            driver.findElement(rentFourDay).click();
-        }
-        if (day == "five") {
-            driver.findElement(rentFiveDay).click();
-        }
-        if (day == "six") {
-            driver.findElement(rentSixDay).click();
-        }
-        if (day == "seven") {
-            driver.findElement(rentSevenDay).click();
+        switch (day) {
+            case "сутки":
+                driver.findElement(rentOneDay).click();
+                break;
+            case "двое суток":
+                driver.findElement(rentTwoDay).click();
+                break;
+            case "трое суток":
+                driver.findElement(rentThreeDay).click();
+                break;
+            case "четверо суток":
+                driver.findElement(rentFourDay).click();
+                break;
+            case "пятеро суток":
+                driver.findElement(rentFiveDay).click();
+                break;
+            case "шесть суток":
+                driver.findElement(rentSixDay).click();
+                break;
+            case "семеро суток":
+                driver.findElement(rentSevenDay).click();
+                break;
         }
     }
-    public void setColorScooterField(String color) {
+    public void selectColorScooterField(String color) {
         if (color == "black") {
             driver.findElement(colorScooterBlack).click();
         } else {
             driver.findElement(colorScooterGrey).click();
-
         }
     }
-    public void setCommentForCourierField(String comment) {
+    public void fillCommentForCourierField(String comment) {
         driver.findElement(commentForCourierField).sendKeys(comment);
     }
     public void clickButtonOrder() {
-
         driver.findElement(buttonOrder).click();
     }
     public void waitWindowsYesOrNo() {
-        new WebDriverWait(driver, Duration.ofSeconds(10)).until(ExpectedConditions.elementToBeClickable(buttonOrder));
+        new WebDriverWait(driver, Duration.ofSeconds(10)).until(ExpectedConditions.elementToBeClickable(windowOrderCreated));
     }
     public void clickButtonYes() {
         driver.findElement(buttonYes).click();
     }
-    public String findOrderProcessedForm() {
-        return (driver.findElement(orderProcessed).getText());
+    public String setTextWindowOrderCreated() {
+        return (driver.findElement(windowOrderCreated).getText());
     }
-    public void aboutRent(String dateRent, String day, String color, String comment) {
-        setDateRentField(dateRent);
-        setRentPeriodField(day);
-        setColorScooterField(color);
-        setCommentForCourierField(comment);
+    public void fillFieldAboutRent(String dateRent, String day, String color, String comment) {
+        fillDateRentField(dateRent);
+        selectRentPeriodField(day);
+        selectColorScooterField(color);
+        fillCommentForCourierField(comment);
         clickButtonOrder();
         waitWindowsYesOrNo();
         clickButtonYes();
-        findOrderProcessedForm();
+        setTextWindowOrderCreated();
     }
-
 }
 
