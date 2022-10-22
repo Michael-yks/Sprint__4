@@ -1,12 +1,11 @@
 package PageObjects;
 
-import org.openqa.selenium.By;
-import org.openqa.selenium.Keys;
-import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.*;
 
 public class UserDataPage {
     private WebDriver driver;
     private final By orderButtonHeader = By.className("Button_Button__ra12g");
+    private final By orderSecondButton = By.cssSelector("div.Home_FinishButton__1_cWm > button.Button_Middle__1CSJM");
     private final By nameField = By.xpath("//*[@placeholder='* Имя']");
     private final By familyNameField = By.xpath("//*[@placeholder='* Фамилия']");
     private final By deliveryAddressField = By.xpath("//*[@placeholder='* Адрес: куда привезти заказ']");
@@ -18,9 +17,17 @@ public class UserDataPage {
         this.driver = driver;
     }
 
+    public void scrollToOrderSecondButton() {
+        WebElement element = driver.findElement(orderSecondButton);
+        ((JavascriptExecutor) driver).executeScript("arguments[0].scrollIntoView();", element);
+    }
+
 
     public void clickOrderButtonHeader() {
         driver.findElement(orderButtonHeader).click();
+    }
+    public void clickOrderSecondButton() {
+        driver.findElement(orderSecondButton).click();
     }
     public void fillFieldName(String name) {
         driver.findElement(nameField).sendKeys(name);
@@ -44,6 +51,16 @@ public class UserDataPage {
     }
     public void fillScooterOrderForm(String name, String familyName, String deliveryAddress, String metroStation, String telNumber) {
         clickOrderButtonHeader();
+        fillFieldName(name);
+        fillFieldFamilyName(familyName);
+        fillFieldDeliveryAddress(deliveryAddress);
+        fillFieldMetroStation(metroStation);
+        fillFieldTelNumber(telNumber);
+        clickNextButton();
+    }
+    public void fillScooterOrderFormUseSecondButton(String name, String familyName, String deliveryAddress, String metroStation, String telNumber) {
+        scrollToOrderSecondButton();
+        clickOrderSecondButton();
         fillFieldName(name);
         fillFieldFamilyName(familyName);
         fillFieldDeliveryAddress(deliveryAddress);

@@ -1,8 +1,6 @@
 package PageObjects;
 
-import org.openqa.selenium.By;
-import org.openqa.selenium.Keys;
-import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.*;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
 
@@ -27,8 +25,6 @@ public class AboutRentPage {
     private final By buttonOrder = By.xpath(".//div[@class='Order_Content__bmtHS']//button[text()='Заказать']");
     private final By buttonYes = By.xpath(".//button[(text() = 'Да')]");
     private final By windowOrderCreated = By.className("Order_Modal__YZ-d3");
-    //private final By buttonOrderStatus = By.xpath(".//*[text() = 'Посмотреть статус']");
-    //private final By windowOrderStatus = By.className("Track_OrderInfo__2fpDL");
 
 
 
